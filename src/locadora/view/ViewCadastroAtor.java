@@ -4,6 +4,9 @@
  */
 package locadora.view;
 
+import javax.swing.JOptionPane;
+import locadora.controller.AtorController;
+
 /**
  *
  * @author artur
@@ -74,9 +77,19 @@ public class ViewCadastroAtor extends javax.swing.JFrame {
 
         jbLimpar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jbLimpar.setText("Limpar");
+        jbLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLimparActionPerformed(evt);
+            }
+        });
 
         jbCancelar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jbCancelar.setText("Cancelar");
+        jbCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbCancelarActionPerformed(evt);
+            }
+        });
 
         jbConsultar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jbConsultar.setText("Consultar");
@@ -165,8 +178,32 @@ public class ViewCadastroAtor extends javax.swing.JFrame {
     }//GEN-LAST:event_jtfNomeActionPerformed
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
-        // TODO add your handling code here:
+        String nome = jtfNome.getText();
+        String nacionalidade = (String) jcbNacionalidade.getSelectedItem();
+
+        try {
+            AtorController atorController = new AtorController();
+            boolean sucess = atorController.cadastroAtor(nome, nacionalidade);
+            if (sucess) {
+                JOptionPane.showMessageDialog(this, "Ator cadastrado com sucesso!");
+                this.limparTelaCadastroAtor();
+            } else {
+                JOptionPane.showMessageDialog(this, "Os dados não foram preenchidos corretamente.");
+
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex);
+        }
+
     }//GEN-LAST:event_jbSalvarActionPerformed
+
+    private void jbLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimparActionPerformed
+        this.limparTelaCadastroAtor();
+    }//GEN-LAST:event_jbLimparActionPerformed
+
+    private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jbCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -214,4 +251,9 @@ public class ViewCadastroAtor extends javax.swing.JFrame {
     private javax.swing.JPanel jpCadastroAtor;
     private javax.swing.JTextField jtfNome;
     // End of variables declaration//GEN-END:variables
+
+    private void limparTelaCadastroAtor() {
+        jtfNome.setText("");
+        jcbNacionalidade.setSelectedIndex(0);
+    }
 }

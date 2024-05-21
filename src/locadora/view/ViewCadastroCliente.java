@@ -4,6 +4,9 @@
  */
 package locadora.view;
 
+import javax.swing.JOptionPane;
+import locadora.controller.ClienteController;
+
 /**
  *
  * @author artur
@@ -80,9 +83,19 @@ public class ViewCadastroCliente extends javax.swing.JFrame {
 
         jbLimpar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jbLimpar.setText("Limpar");
+        jbLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLimparActionPerformed(evt);
+            }
+        });
 
         jbCancelar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jbCancelar.setText("Cancelar");
+        jbCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbCancelarActionPerformed(evt);
+            }
+        });
 
         jbConsultar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jbConsultar.setText("Consultar");
@@ -126,8 +139,9 @@ public class ViewCadastroCliente extends javax.swing.JFrame {
                         .addGap(41, 41, 41)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jftfNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                                .addComponent(jftfNascimento, javax.swing.GroupLayout.Alignment.LEADING)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(139, 355, Short.MAX_VALUE)
@@ -201,8 +215,34 @@ public class ViewCadastroCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
-        // TODO add your handling code here:
+        String nome = jtfNome.getText();
+        String data = jftfNascimento.getText();
+        String cpf = jFormattedTextField1.getText();
+        String email = jtfEmail.getText();
+        String endereco = jtfEndereco.getText();
+
+        try {
+            ClienteController clienteController = new ClienteController();
+            boolean sucess = clienteController.cadastrarCliente(nome, cpf, email, endereco, data);
+            if (sucess) {
+                JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+                this.limparTelaCadastroCliente();
+            } else {
+                JOptionPane.showMessageDialog(this, "Dados não foram preenchidos corretamente.");
+            }
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Erro: " + ex);
+        }
     }//GEN-LAST:event_jbSalvarActionPerformed
+
+    private void jbLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimparActionPerformed
+        this.limparTelaCadastroCliente();
+    }//GEN-LAST:event_jbLimparActionPerformed
+
+    private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jbCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,4 +295,12 @@ public class ViewCadastroCliente extends javax.swing.JFrame {
     private javax.swing.JTextField jtfEndereco;
     private javax.swing.JTextField jtfNome;
     // End of variables declaration//GEN-END:variables
+
+    private void limparTelaCadastroCliente() {
+        jtfNome.setText("");
+        jftfNascimento.setText("");
+        jFormattedTextField1.setText("");
+        jtfEmail.setText("");
+        jtfEndereco.setText("");
+    }
 }

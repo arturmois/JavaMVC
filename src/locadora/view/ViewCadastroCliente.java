@@ -72,6 +72,11 @@ public class ViewCadastroCliente extends javax.swing.JFrame {
 
         jbSalvar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jbSalvar.setText("Salvar");
+        jbSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalvarActionPerformed(evt);
+            }
+        });
 
         jbLimpar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jbLimpar.setText("Limpar");
@@ -195,6 +200,10 @@ public class ViewCadastroCliente extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbSalvarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -223,10 +232,8 @@ public class ViewCadastroCliente extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ViewCadastroCliente().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new ViewCadastroCliente().setVisible(true);
         });
     }
 

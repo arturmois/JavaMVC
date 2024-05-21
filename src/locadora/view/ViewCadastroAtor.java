@@ -66,6 +66,11 @@ public class ViewCadastroAtor extends javax.swing.JFrame {
 
         jbSalvar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jbSalvar.setText("Salvar");
+        jbSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalvarActionPerformed(evt);
+            }
+        });
 
         jbLimpar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jbLimpar.setText("Limpar");
@@ -158,6 +163,10 @@ public class ViewCadastroAtor extends javax.swing.JFrame {
     private void jtfNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfNomeActionPerformed
+
+    private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbSalvarActionPerformed
 
     /**
      * @param args the command line arguments

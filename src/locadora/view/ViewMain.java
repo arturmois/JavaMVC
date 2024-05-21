@@ -87,6 +87,11 @@ public class ViewMain extends javax.swing.JFrame {
 
         jmiFilme.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jmiFilme.setText("Filme");
+        jmiFilme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiFilmeActionPerformed(evt);
+            }
+        });
         jMenuCadastro.add(jmiFilme);
 
         jmiItem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -115,6 +120,11 @@ public class ViewMain extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jmiFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiFilmeActionPerformed
+        ViewCadastroFilme cadastroFilme = new ViewCadastroFilme();
+        cadastroFilme.setVisible(true);
+    }//GEN-LAST:event_jmiFilmeActionPerformed
 
     /**
      * @param args the command line arguments
